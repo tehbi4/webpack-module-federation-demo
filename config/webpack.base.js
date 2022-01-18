@@ -56,6 +56,19 @@ const config = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          enforce: true,
+          filename: "vendors.[contenthash:6].js",
+        },
+      },
+    },
+  },
 };
 
 module.exports = () => {
