@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Actors: React.FC = () => {
+const Actors: React.FC = () => {
   //
   return (
     <>
@@ -39,3 +39,5 @@ export const Actors: React.FC = () => {
     </>
   );
 };
+
+export default Actors;

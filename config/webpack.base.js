@@ -10,6 +10,9 @@ const config = {
   entry: path.resolve(__dirname, "../src/index.tsx"),
   output: {
     path: path.resolve(__dirname, "../dist"),
+    filename: '[name].[chunkhash:6].js',
+    chunkFilename: '[name].[chunkhash:6].js',
+    clean: true,
   },
   devServer: {
     open: true,

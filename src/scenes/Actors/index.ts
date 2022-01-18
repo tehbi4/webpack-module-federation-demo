@@ -1,1 +1,1 @@
-export { Actors } from './Actors';
+export { default } from './Actors';
