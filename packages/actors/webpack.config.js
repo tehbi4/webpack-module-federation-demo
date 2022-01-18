@@ -1,32 +1,39 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
+const port = 3001;
+const publicPath = `http://localhost:${port}/`;
+
 const config = {
   target: ["web", "es5"],
-  entry: path.resolve(__dirname, "../src/index.tsx"),
+  entry: path.resolve(__dirname, "./src/index.tsx"),
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    filename: '[name].[chunkhash:6].js',
-    chunkFilename: '[name].[chunkhash:6].js',
+    publicPath,
     clean: true,
   },
   devServer: {
+    port,
+    contentBase: "./dist",
     open: true,
-    host: "localhost",
-    port: 3000,
     historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "../src/index.html"),
+      template: path.resolve(__dirname, "./src/index.html"),
     }),
-
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+    new ModuleFederationPlugin({
+      name: "actors",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Actors": "./src/App",
+      },
+      shared: { react: { singleton: true }, "react-dom": { singleton: true } },
+    }),
+    new ExternalTemplateRemotesPlugin(),
   ],
   module: {
     rules: [
@@ -61,16 +68,7 @@ const config = {
   },
 
   optimization: {
-    splitChunks: {
-      chunks: "all",
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          enforce: true,
-          filename: "vendors.[contenthash:6].js",
-        },
-      },
-    },
+    minimize: isProduction,
   },
 };
 

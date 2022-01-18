@@ -1,6 +1,6 @@
 import React from "react";
 
-const Actors: React.FC = () => {
+const App: React.FC = () => {
   //
   return (
     <>
@@ -40,4 +40,4 @@ const Actors: React.FC = () => {
   );
 };
 
-export default Actors;
+export default App;

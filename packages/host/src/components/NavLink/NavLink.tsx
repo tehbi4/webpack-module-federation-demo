@@ -4,8 +4,8 @@ import cn from "classnames";
 import styles from "./NavLink.css";
 
 export const NavLink: React.FC<NavLinkProps> = ({ className, ...props }) => {
-  const navLinkClassName: NavLinkProps["className"] = (qwe) =>
-    cn(className, styles.link, qwe.isActive && styles.active);
+  const navLinkClassName: NavLinkProps["className"] = ({ isActive }) =>
+    cn(className, styles.link, isActive && styles.active);
 
   return (
     <ReactRouterNavLink className={navLinkClassName} {...props}>

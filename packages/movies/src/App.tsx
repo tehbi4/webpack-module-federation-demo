@@ -1,6 +1,6 @@
 import React from "react";
 
-const Movies: React.FC = () => {
+const App: React.FC = () => {
   //
   return (
     <>
@@ -41,4 +41,4 @@ const Movies: React.FC = () => {
   );
 };
 
-export default Movies;
+export default App;

@@ -6,8 +6,10 @@ import { Home } from "./scenes/Home";
 import styles from "./App.css";
 import { NavLink } from "./components/NavLink";
 
-const Actors = React.lazy(() => import("./scenes/Actors"));
-const Movies = React.lazy(() => import("./scenes/Movies"));
+// @ts-ignore
+const Actors = React.lazy(() => import("actors/Actors"));
+// @ts-ignore
+const Movies = React.lazy(() => import("movies/Movies"));
 
 export const App: React.FC = () => {
   //

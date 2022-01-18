@@ -20,6 +20,10 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-  ]
+    "packages/**/src"
+  ],
+  "paths": {
+    "actors": ["./packages/actors/src/App.tsx"],
+    "movies": ["./packages/movies/src/App.tsx"]
+  }
 }
